@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { userRegister } from '../Redux/register/action';
 
 const RegisterUser = () => {
   const [formData, setFormData] = useState({});
+  const { loading, error } = useSelector((store) => store.register);
   const dispatch = useDispatch();
 
   const handleChange = (e) => {
