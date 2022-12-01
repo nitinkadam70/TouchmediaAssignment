@@ -18,7 +18,7 @@ const Users = () => {
                     key={elem.id}
                     className="d-flex align-items-center justify-content-left gap-5 p-2 bg-light "
                   >
-                    <div className="d-flex align-items-center gap-2 bg-white p-4 rounded w-50 border border-success">
+                    <div className="d-flex align-items-center gap-2 bg-white p-sm-3 p-md-4 rounded w-50 border border-success">
                       <div>
                         <img
                           className="rounded-circle"

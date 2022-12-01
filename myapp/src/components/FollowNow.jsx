@@ -29,7 +29,8 @@ const FollowNow = () => {
   return (
     <div className="w-75 m-auto">
       <h2 className="mb-4 text-center ">Follow Now</h2>
-      <div className="d-flex gap-3 flex-wrap align-items-center justify-content-around p-5 bg-light">
+
+      <div className=" d-flex gap-3 align-self-center flex-wrap align-items-center justify-content-around p-5 bg-light">
         <div>
           <label>Select User</label>
           <select onChange={handleChange} className="form-select">
@@ -54,6 +55,9 @@ const FollowNow = () => {
           </select>
         </div>
       </div>
+      <center>
+        <button className="btn btn-danger w-25">Follow</button>
+      </center>
     </div>
   );
 };

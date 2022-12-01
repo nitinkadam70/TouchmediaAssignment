@@ -43,5 +43,8 @@ export const userRegister = (payload) => (dispatch) => {
     .then((res) => {
       dispatch(userRegisterSuccess(res));
     })
-    .catch((err) => dispatch(userRegisterError(err)));
+    .catch((err) => {
+      dispatch(userRegisterError(err));
+      console.log(err);
+    });
 };

@@ -36,7 +36,7 @@ const RegisterUser = () => {
       )}
       {error && (
         <Alert className="text-center" variant="danger">
-          {`ERROR : ${error.message}`}
+          {`${error.response.data.error.name} : ${error.response.data.error.message} `}
         </Alert>
       )}
       {data.length != 0 && (
