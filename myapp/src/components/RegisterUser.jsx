@@ -1,12 +1,16 @@
 import React, { useState } from 'react';
-import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
+import Alert from 'react-bootstrap/Alert';
 import { useDispatch, useSelector } from 'react-redux';
 import { userRegister } from '../Redux/register/action';
 
 const RegisterUser = () => {
   const [formData, setFormData] = useState({});
-  const { loading, error } = useSelector((store) => store.register);
+
+  const { loading, data, error } = useSelector(
+    (store) => store.register
+  );
+
   const dispatch = useDispatch();
 
   const handleChange = (e) => {
@@ -19,12 +23,27 @@ const RegisterUser = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     dispatch(userRegister(formData));
-    console.log(formData);
   };
 
   return (
     <div className="pt-4 ">
       <h2 className="mb-4 text-center">Create an Account</h2>
+
+      {loading && (
+        <div className="text-center">
+          <div className="spinner-border" role="status"></div>
+        </div>
+      )}
+      {error && (
+        <Alert className="text-center" variant="danger">
+          {`ERROR : ${error.message}`}
+        </Alert>
+      )}
+      {data.length != 0 && (
+        <Alert className="text-center" variant="success">
+          {`Success : Request success with status code ${data.request.status}`}
+        </Alert>
+      )}
       <Form
         onSubmit={handleSubmit}
         className="d-flex flex-wrap gap-2 align-items-center justify-content-center"

@@ -5,10 +5,12 @@ import {
   legacy_createStore as createStore,
 } from 'redux';
 import thunk from 'redux-thunk';
+import { getUserReducer } from './getUser/reducer';
 import { registerReducer } from './register/reducer';
 
 const rootReducer = combineReducers({
   register: registerReducer,
+  getUser: getUserReducer,
 });
 
 const composeEnhancers =

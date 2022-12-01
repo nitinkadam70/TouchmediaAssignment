@@ -1,7 +1,7 @@
 import {
-  USER_REGISTER_ERROR,
-  USER_REGISTER_LOADING,
-  USER_REGISTER_SUCCESS,
+  GET_USER_ERROR,
+  GET_USER_LOADING,
+  GET_USER_SUCCESS,
 } from './action';
 
 const initState = {
@@ -10,9 +10,9 @@ const initState = {
   error: false,
 };
 
-export const registerReducer = (state = initState, action) => {
+export const getUserReducer = (state = initState, action) => {
   switch (action.type) {
-    case USER_REGISTER_LOADING:
+    case GET_USER_LOADING:
       return {
         ...state,
         loading: true,
@@ -20,7 +20,7 @@ export const registerReducer = (state = initState, action) => {
         error: false,
       };
 
-    case USER_REGISTER_SUCCESS:
+    case GET_USER_SUCCESS:
       return {
         ...state,
         loading: false,
@@ -28,7 +28,7 @@ export const registerReducer = (state = initState, action) => {
         error: false,
       };
 
-    case USER_REGISTER_ERROR:
+    case GET_USER_ERROR:
       return {
         ...state,
         loading: false,
