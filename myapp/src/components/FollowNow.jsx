@@ -6,19 +6,23 @@ import { getUser } from '../Redux/getUser/action';
 
 const FollowNow = () => {
   const dispatch = useDispatch();
-  const [userFollow, setUserFollow] = useState({});
-  const [whomToFollow, setWhomToFollow] = useState({});
   const { data } = useSelector((store) => store.getUser);
-  const [followToData, setFollowToData] = useState([]);
+  const [followToData, setFollowToData] = useState(data);
 
   const handleChange = (e) => {
-    console.log('e', e);
-    console.log(userFollow);
+    const newData = data.filter((elem) => {
+      //data filteting
+      if (e.target.value != elem.id) {
+        return elem;
+      }
+    });
+    setFollowToData(newData);
   };
   useEffect(() => {
-    dispatch(getUser());
-    console.log(data);
-  }, []);
+    if (data.length === 0) {
+      dispatch(getUser());
+    }
+  }, [data.length]);
   return (
     <div className="w-75 m-auto">
       <h2 className="mb-4 text-center ">Follow Now</h2>
@@ -28,7 +32,7 @@ const FollowNow = () => {
           <select onChange={handleChange} className="form-select">
             <option>Select User</option>
             {data.map((elem) => (
-              <option key={elem.id} value={elem}>
+              <option key={elem.id} value={elem.id}>
                 {`${elem.attributes.firstName} ${elem.attributes.lastName}`}
               </option>
             ))}
@@ -38,14 +42,12 @@ const FollowNow = () => {
           <label>Following To</label>
           <select className="form-select">
             <option>Select user to whom to follow</option>
-            {data.length !== 0 &&
-              data.map((elem) => (
-                <option key={elem.id} value={elem}>
+            {followToData.length !== 0 &&
+              followToData.map((elem) => (
+                <option key={elem.id} value={elem.id}>
                   {`${elem.attributes.firstName} ${elem.attributes.lastName}`}
                 </option>
               ))}
-            <option value="2">Two</option>
-            <option value="3">Three</option>
           </select>
         </div>
       </div>
