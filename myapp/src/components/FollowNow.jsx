@@ -8,6 +8,7 @@ const FollowNow = () => {
   const dispatch = useDispatch();
   const { data } = useSelector((store) => store.getUser);
   const [followToData, setFollowToData] = useState(data);
+  const [followers, setFollowers] = useState(null);
 
   const handleChange = (e) => {
     const newData = data.filter((elem) => {
@@ -17,7 +18,9 @@ const FollowNow = () => {
       }
     });
     setFollowToData(newData);
+    setFollowers(e.target.value);
   };
+
   useEffect(() => {
     if (data.length === 0) {
       dispatch(getUser());
@@ -42,7 +45,7 @@ const FollowNow = () => {
           <label>Following To</label>
           <select className="form-select">
             <option>Select user to whom to follow</option>
-            {followToData.length !== 0 &&
+            {followToData.length != 0 &&
               followToData.map((elem) => (
                 <option key={elem.id} value={elem.id}>
                   {`${elem.attributes.firstName} ${elem.attributes.lastName}`}
