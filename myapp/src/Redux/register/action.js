@@ -31,6 +31,7 @@ export const userRegister = (payload) => (dispatch) => {
       ...payload,
     },
   };
+  
   axios({
     url: API_url,
     method: 'POST',
